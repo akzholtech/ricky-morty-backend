@@ -3,7 +3,7 @@ import requests
 from core.settings import settings
 
 
-HF_API_KEY = settings.token
+HF_API_KEY = settings.hf_token
 
 if not HF_API_KEY:
     raise RuntimeError("HF_API_KEY is not set")
