@@ -1,11 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import httpx, os
-from dotenv import load_dotenv
-from openai import OpenAI
-
-load_dotenv()
-client_ai = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+import httpx
+from core.hf_client import hf_generate
 
 app = FastAPI()
 
@@ -41,9 +37,6 @@ async def ai_description(char_id: int):
 
     prompt = f"Write a cinematic backstory for Rick and Morty character {char['name']}"
 
-    response = client_ai.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt}]
-    )
+    result = hf_generate(prompt)
 
-    return {"story": response.choices[0].message.content}
+    return {"description": result.strip()}
