@@ -1,10 +1,9 @@
 import os
 import requests
-from dotenv import load_dotenv
+from core.settings import settings
 
-load_dotenv()
 
-HF_API_KEY = os.getenv("HF_TOKEN")
+HF_API_KEY = settings.token
 
 if not HF_API_KEY:
     raise RuntimeError("HF_API_KEY is not set")

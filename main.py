@@ -7,7 +7,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=["https://ricky-morty-frontend-tltu.vercel.app"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
